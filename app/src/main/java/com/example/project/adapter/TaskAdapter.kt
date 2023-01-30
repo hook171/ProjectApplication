@@ -22,7 +22,7 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Task, newItem: яTask): Boolean {
+            override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
                 return oldItem.id == newItem.id
             }
 
@@ -57,9 +57,6 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
             binding?.tvTaskTitle?.text = currentTask.nateTitle
             binding?.tvTaskBody?.text = currentTask.nateBody
         }
-
-
     }
-
 
 }

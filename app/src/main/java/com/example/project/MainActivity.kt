@@ -22,15 +22,23 @@ class MainActivity : AppCompatActivity() {
 
 
         setSupportActionBar(binding.toolbar)
+
+        setUpViewModel()
     }
 
     private fun setUpViewModel(){
 
-        val taskRepository = TaskRepository(TaskDatabase(this))
+        val taskRepository = TaskRepository(
+            TaskDatabase(this)
+        )
 
-        val viewModelProviderFactory = TaskViewModelProvider(application,taskRepository)
+        val viewModelProviderFactory = TaskViewModelProvider(
+            application,taskRepository
+        )
 
-        taskViewModel = ViewModelProvider(this, viewModelProviderFactory).get(TaskViewModel::class.java)
+        taskViewModel = ViewModelProvider(
+            this, viewModelProviderFactory
+        ).get(TaskViewModel::class.java)
 
     }
 }
