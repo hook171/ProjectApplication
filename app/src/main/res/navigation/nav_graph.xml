@@ -8,31 +8,47 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.project.fragments.HomeFragment"
-        android:label="fragment_home"
+        android:label="Task"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_newTaskFragment"
-            app:destination="@id/newTaskFragment" />
+            app:destination="@id/newTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_updateTaskFragment"
-            app:destination="@id/updateTaskFragment" />
+            app:destination="@id/updateTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.example.project.fragments.NewTaskFragment"
-        android:label="fragment_new_task"
+        android:label="New Task"
         tools:layout="@layout/fragment_new_task" >
         <action
             android:id="@+id/action_newTaskFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
         android:name="com.example.project.fragments.UpdateTaskFragment"
-        android:label="fragment_update_task"
+        android:label="Update Task"
         tools:layout="@layout/fragment_update_task" >
         <action
             android:id="@+id/action_updateTaskFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>
