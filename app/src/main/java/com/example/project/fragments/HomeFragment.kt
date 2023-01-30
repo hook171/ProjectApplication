@@ -31,7 +31,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             false
 
         )
-
         return binding.root
     }
 
