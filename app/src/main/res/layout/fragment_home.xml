@@ -9,7 +9,7 @@
     tools:context=".fragments.HomeFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddNote"
+        android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_no_note_available"
+            android:id="@+id/tv_no_task_available"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
