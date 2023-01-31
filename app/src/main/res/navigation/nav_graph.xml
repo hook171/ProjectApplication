@@ -25,6 +25,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.example.project.fragments.NewTaskFragment"
@@ -38,6 +39,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/updateTaskFragment"
         android:name="com.example.project.fragments.UpdateTaskFragment"
@@ -50,5 +52,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="task"
+            app:argType="com.example.project.model.Task"
+            app:nullable="true" />
     </fragment>
+
 </navigation>

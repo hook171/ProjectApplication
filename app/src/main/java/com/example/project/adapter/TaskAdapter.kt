@@ -2,10 +2,12 @@ package com.example.project.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.databinding.TaskLayoutAdapterBinding
+import com.example.project.fragments.HomeFragmentDirections
 import com.example.project.model.Task
 
 class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -52,10 +54,16 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = differ.currentList[position]
-
         holder.itemView.apply{
             binding?.tvTaskTitle?.text = currentTask.nateTitle
             binding?.tvTaskBody?.text = currentTask.nateBody
+
+        }.setOnClickListener{mView ->
+
+            val direction = HomeFragmentDirections.actionHomeFragmentToUpdateTaskFragment(currentTask)
+
+            mView.findNavController().navigate(direction)
+
         }
     }
 
