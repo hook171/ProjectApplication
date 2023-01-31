@@ -2,10 +2,12 @@ package com.example.project.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.room.util.query
 import com.example.project.MainActivity
 import com.example.project.R
 import com.example.project.adapter.TaskAdapter
@@ -13,7 +15,8 @@ import com.example.project.databinding.FragmentHomeBinding
 import com.example.project.model.Task
 import com.example.project.viewmodel.TaskViewModel
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home),
+    SearchView.OnQueryTextListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -59,11 +62,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.recyclerView.apply{
 
              layoutManager = StaggeredGridLayoutManager(
-                 2,
+                 1,
                  StaggeredGridLayoutManager.VERTICAL
              )
 
-            setHasFixedSize(true)
             adapter = taskAdapter
 
         }
@@ -91,12 +93,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
         inflater.inflate(R.menu.home_menu,menu)
+
+        val mMenuSearch = menu.findItem(R.id.menu_search).actionView as SearchView
+        mMenuSearch.isSubmitButtonEnabled = true
+        mMenuSearch.setOnQueryTextListener(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query != null){
+            searchTasks(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if(query != null){
+            searchTasks(query)
+        }
+        return true
+    }
+
+
+    private fun searchTasks(query: String?){
+        val searchQuery = "%$query%"
+
+        taskViewModel.searchTask(searchQuery).observe(this,{list ->
+
+            taskAdapter.differ.submitList(list)
+        })
     }
 
 

@@ -60,13 +60,13 @@ class NewTaskFragment : Fragment(R.layout.fragment_new_task) {
 
             taskViewModel.addTask(note)
             Snackbar.make(
-                view, "Запись успешно сохранена...",
+                view, "Задача успешно сохранена...",
                 Snackbar.LENGTH_SHORT
             ).show()
             view.findNavController().navigate(R.id.action_newTaskFragment_to_homeFragment)
 
         } else {
-            activity?.toast("Пожалуйста введите название записи...")
+            activity?.toast("Пожалуйста введите название задачии...")
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.project.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -63,15 +64,33 @@ class UpdateTaskFragment : Fragment() {
                 val task = Task(currentTask.id, title, body)
                 taskViewModel.updateTask(task)
 
+                activity?.toast("Задача обновлена!")
+
                 view.findNavController().navigate(
                     R.id.action_updateTaskFragment_to_homeFragment
                 )
             }
             else{
-                activity?.toast("Пожалуйста введите название записи...")
+                activity?.toast("Пожалуйста введите название задачи...")
             }
         }
 
+    }
+
+    private fun deleteTask(){
+
+        AlertDialog.Builder(activity).apply{
+            setTitle("Удалить задачу")
+            setMessage("Вы действительно хотите удалить задачу? ")
+            setPositiveButton("УДАЛИТЬ"){_,_ ->
+                taskViewModel.deleteTask(currentTask)
+                view?.findNavController()?.navigate(
+                    R.id.action_updateTaskFragment_to_homeFragment
+                )
+            }
+
+            setNegativeButton("ОТМЕНИТЬ", null).create().show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,7 +98,16 @@ class UpdateTaskFragment : Fragment() {
         inflater.inflate(R.menu.update_menu,menu)
         super.onCreateOptionsMenu(menu, inflater)
 
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.delete_menu ->{
+                deleteTask()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

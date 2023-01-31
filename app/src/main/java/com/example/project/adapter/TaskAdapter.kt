@@ -1,5 +1,6 @@
 package com.example.project.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project.databinding.TaskLayoutAdapterBinding
 import com.example.project.fragments.HomeFragmentDirections
 import com.example.project.model.Task
+import java.util.*
 
 class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
@@ -55,8 +57,19 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = differ.currentList[position]
         holder.itemView.apply{
+
             binding?.tvTaskTitle?.text = currentTask.nateTitle
             binding?.tvTaskBody?.text = currentTask.nateBody
+
+            val random = Random()
+
+            val color =
+                Color.argb(
+                    255, random.nextInt(256),
+                    random.nextInt(256), random.nextInt(256)
+                )
+
+            binding?.ibColor?.setBackgroundColor(color)
 
         }.setOnClickListener{mView ->
 
